@@ -1,0 +1,58 @@
+body {
+  background-color: white;
+}
+
+h1 {
+  text-align: center;
+  color: black;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  background-color: inherit;
+  padding: 1rem;
+  margin: auto;
+  width: 15rem;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+article {
+  width: 100%;
+  margin: auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  align-items: center;
+  margin: auto;
+}
+
+summary {
+  background-color: rgb(160, 158, 243);
+  padding: 1rem;
+}
+
+p {
+  margin: 0;
+  background-color: inherit;
+  padding: 1rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.dark {
+  color: white;
+  background-color: #555;
+}
+
+.light {
+  color: black;
+  background-color: white;
+}

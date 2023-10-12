@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A11Y</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <h1>
+        The Candy Shop
+      </h1>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Holidays</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="mainContent">
+    <article>
+      <h2>Welcome</h2>
+      <p>We have the finest selections of candies and treats online. Our varied confections are top quality and sure to please your sweet tooth. Check out what we have to offer.</p>
+
+
+      <!-- !!!!! Add Alt text, width and height -->
+      <img src="img/candy-table-display.jpg" alt="Table full of candy. The Candy Shop is your one stop shop for all your candy desires" width=550 height=309>
+      <p>Photo by PetitPlat - Stephanie Kilgast</p>
+
+
+      <aside>
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="#">Hard Candy</a></li>
+          <li><a href="#">Chocolate</a></li>
+          <li><a href="#">Taffy</a></li>
+          <li><a href="#">Bubble Gum</a></li>
+          <li><a href="#">Licorice</a></li>
+          <li><a href="#">Holidays</a></li>
+        </ul>
+      </aside>
+    </article>
+    <aside>
+      <form>
+        <fieldset>
+          <legend>Contact Us!</legend>
+
+          <!-- !!!!! Add "for" attributes to lables -->
+          <label for="yourName">Your Name</label>
+          <input id="yourName" type="text" name="userName">
+          <label for="yourComments">Comments</label>
+          <textarea id="yourComments" name="userComment"></textarea>
+
+
+        </fieldset>
+        <button type="submit">Submit</button>
+      </form>
+
+      <!-- !!!!! Add tabindex - AND add the kepress event listener to app.js -->
+      <div class="cta" tabindex=0>
+        Random Deal
+      </div>
+      <section id="results">
+
+      </section>
+    </aside>
+  </main>
+  <footer>
+    <p>© The Candy Shop</p>
+  </footer>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

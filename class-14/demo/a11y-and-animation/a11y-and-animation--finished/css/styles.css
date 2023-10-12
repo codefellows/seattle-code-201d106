@@ -1,0 +1,233 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #F9E1E1;
+  /* Below: color is fixed to provide adaquate contrast */
+  color: #682C2C;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: .5rem;
+  z-index: 99;
+}
+
+a {
+  color: #770303;
+}
+
+header {
+  background-color: #FDD3D3;
+  margin-bottom: 5rem;
+  width: 100%;
+}
+
+nav {
+  margin: 0 auto;
+  max-width: 1024px;
+  padding: 2rem 0;
+}
+
+nav ul li {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+nav li {
+  margin: 1rem;
+
+  /* Remove the padding. Put it on the 'nav li a' instead. To make it easy to hover over the link, we want the a tag to have the padding, not the li  */
+  /* padding: 0.2rem 1rem; */
+}
+
+nav li a {
+  /* Make the font-size larger */
+  font-size: 1rem;
+  text-decoration: none;
+
+  /* Add a transparent border to cancel out the layout shift when you hover */
+  border: 10px solid transparent;
+
+  /* Add padding. Padding should go on the a tag, the thing the user needs to navigate their mouse to and hover over it */
+  padding: 0.2rem 1rem;
+}
+
+nav li a:hover {
+  background-color: #f5e9e9;
+  border: 10px solid #f5e9e9;
+  color: #9B0303;
+}
+
+main {
+  margin: 1rem auto;
+  max-width: 1024px
+}
+
+main {
+  display: flex;
+  justify-content: space-between;
+}
+
+article {
+  flex-basis: 64%;
+  margin-right: 2rem;
+}
+
+article p {
+  font-size: 1rem;
+  line-height: 150%;
+  
+  /* Remove the font-family. Fancy fonts shouldn't be used on body text */
+  /* font-family: 'Cookie', cursive; */
+}
+
+article aside {
+  border: 1px solid #542323;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+article aside li {
+  margin: .5rem 0;
+}
+
+main aside {
+  flex-basis: 30%;
+}
+
+form fieldset {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+form input {
+  margin-bottom: 1rem;
+}
+
+.cta {
+  align-items: center;
+  background-color: #57473A;
+  color: #DBC9BA;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  margin: 1rem 0;
+  padding: .5rem 2rem;
+
+  /* 
+    CSS TRANSITIONS
+    Add transition:
+  */
+  transition: background-color 2s ease;
+  /* Cancel out the hover change: */
+  border: 10px solid transparent;
+}
+
+/* 
+  CSS TRANSITIONS
+  Add hover styles so there is something to transition
+*/
+.cta:hover {
+  background-color: #f5e9e9;
+  border: 10px solid #9B0303;
+  color: #9B0303;
+  cursor: pointer;
+}
+
+#results {
+  position: relative;
+}
+
+.deals {
+  background-color: FloralWhite;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  position: relative;
+
+  /* 
+    CSS ANIMATIONS
+    Add the animations
+  */
+  animation-name: bounce;
+  /* use "3s" for loadFromRight animation */
+  /* use "1s" for bounce animation */
+  animation-duration: 1s;
+}
+
+/* 
+  CSS ANIMATIONS
+  define the animation:
+  This one conveys the basic concept in an easy to understand way:
+*/
+@keyframes loadFromRight {
+  from {
+    margin-left: 100%;
+    width: 100%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+/* 
+  CSS ANIMATIONS
+  Another one to try on the same element if there is time. This one is slightly more complicated since we haven't covered transform in class previously.
+  Credit: https://www.tutorialspoint.com/css/css_animation_bounce.htm
+*/
+@keyframes bounce { 
+  20%, 50%, 80%, 100% {transform: translateY(0);} 
+  0% {transform: translateY(-8px);}
+  40% {transform: translateY(-8px);} 
+  60% {transform: translateY(-5px);} 
+}
+
+.deals h3 {
+  font-size: 1.5rem;
+  margin: .5rem 0 .8rem;
+}
+
+.deals img {
+  width: 100%;
+}
+
+.deals img:hover {
+  cursor: pointer;
+}
+
+.claim-deal {
+  background-color: #AB6969;
+  border-radius: .3rem;
+  color: whitesmoke;
+  padding: .5rem;
+}
+
+.claim-deal:hover {
+  background-color: #f5e9e9;
+  color: #682C2C;
+  cursor: pointer;
+}
+
+.deals p {
+  font-size: .8rem;
+  padding: .5rem 0 1rem;
+}
+
+article img {
+  margin: 2rem 0;
+  width: 550px;
+}
+
+footer {
+  background-color: #57473A;
+  color: whitesmoke;
+  padding: 3rem;
+  margin-top: 3rem;
+  width: 100%;
+}

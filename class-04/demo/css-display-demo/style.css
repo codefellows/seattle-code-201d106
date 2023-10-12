@@ -1,0 +1,89 @@
+
+/* START CODE */
+* {
+  box-sizing: border-box;
+}
+
+header {
+  margin-bottom: 4rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 500;
+}
+h2 {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+/* end start code */
+
+/* STYLES FOR ALL BOXES */
+
+body > section {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  /* Add this as you work with floats */
+  overflow: auto;
+}
+
+section section {
+  border: 2px solid purple;
+  background-color: lavender;
+}
+
+section section div {
+  border: 2px solid blue;
+  background-color: azure;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+
+/* DISPLAY */
+
+.none div {
+  display: none;
+}
+
+.inline div {
+  display: inline;
+}
+
+.inline-block div {
+  display: inline-block;
+}
+
+
+/* FLOAT */
+
+.float-left div {
+  float: left;
+}
+
+.float-right div {
+  float: right;
+}
+
+/* TOGETHER */
+.together {
+  font-size: 1.2rem;
+}
+.span-inline {
+  color: red;
+}
+
+/* CLEARFIX */
+/* Maybe demo this last and show where the class should be added in the HTML */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
