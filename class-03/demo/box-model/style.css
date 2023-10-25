@@ -1,0 +1,38 @@
+/* alternative box model */
+/* html {
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+} */
+
+/* outline is nice alternative to border because it doesn't actually add to box size */
+/* * {
+  outline: 5px solid rgb(27, 146, 45);
+} */
+
+#container {
+  background-color: aquamarine;
+  /* eentsy, weentsy peek at flexbox */
+  /* display: flex; */
+  /* font-size: 0; */
+}
+.outer-box {
+  background-color: salmon;
+  /* width: 33.33%;
+  float: left; */
+  /* display: none; */
+  /* display: inline-block; */
+}
+.inner-box {
+  height: 100px;
+  width: 100px;
+  background-color: darkslateblue;
+  border-radius: 100%;
+  border: 5px solid slategray;
+  /* margin: 0 auto; */
+}
+
+
