@@ -1,4 +1,4 @@
-console.log('boooooyaaa!');
+'use strict';
 
 // what is a function?
 // function declaration
@@ -9,7 +9,7 @@ function sayHello(){
 // invoke or call a function
 sayHello();
 
-// when you declare a function you have pramaters that give names to the functions inputs
+// when you declare a function you can have paramaters that give names to the function's inputs
 function sayGoodBye(name){
   console.log('good bye ' + name);
 }
@@ -17,11 +17,19 @@ function sayGoodBye(name){
 // the data we pass into a function is called an argument
 sayGoodBye('neo');
 
-// if we want to pass information back to the program we can use a return statment
+// to pass information back to the program use a return statment
 
 function getFullName(firstName, secondName){
   return firstName + ' ' + secondName;
 }
+
+function getDefaultReturnValue() {
+  // notice there is no explicit return statement
+  // what, if anything, do you think gets returned?
+}
+
+let mysteryValue = getDefaultReturnValue();
+console.log(mysteryValue);
 
 let ada = getFullName('ada', 'lovelace');
 console.log('ada: ' + ada);
