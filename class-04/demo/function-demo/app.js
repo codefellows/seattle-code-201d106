@@ -1,13 +1,38 @@
 'use strict';
 
+
+
+
+// resusable block of code
+// relation between inputs and outputs
+
+
+
+
+
+
+
+
+
 // what is a function?
 // function declaration
 function sayHello(){
   console.log('hello world');
 }
 
+
+
+
+
 // invoke or call a function
 sayHello();
+
+function doAnything(theThing) {
+  // let theThing = "play frizbee"; //
+  return "I will do this thing " + theThing;
+}
+
+doAnything("Drink espresso");
 
 // when you declare a function you can have paramaters that give names to the function's inputs
 function sayGoodBye(name){
@@ -43,9 +68,10 @@ function yesOrNoPrompt(promptInfo){
   } else if (userInput === 'mabe'){
     console.log('make up your mind');
   } else {
-    console.log('ERROR: incorrect useage');
+    console.log('ERROR: incorrect usage');
   }
+
+
 }
 
-yesOrNoPrompt('whell yess or no');
-yesOrNoPrompt('how bout yess or no');
+yesOrNoPrompt('Do you like pineapples?');
