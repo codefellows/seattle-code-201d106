@@ -19,7 +19,30 @@ p {
   color: blue;
 }
 
+li {
+  display: inline;
+}
+
 
 #preface h1 {
   font-family: 'Eczar', serif;
 }
+
+#image-demo {
+  /* needed to remove gaps between "child" elements using inline-block.
+  display: flex would remove need for this hack
+  */
+  font-size: 0;
+
+
+  width: 50%;
+}
+
+img {
+  /* display: flex in parent element is better */
+  display: inline-block;
+
+
+  max-width: 33%;
+}
+
