@@ -17,6 +17,7 @@
 const frankie = {
   name: 'frankie',
   age: 0, // will be set soon
+  description: 'adorable',
   interests: ['cuddling', 'chasing string', 'catnip'],
   generateAge: function () {
     this.age = randomAge(3, 12) + ' months';
@@ -29,6 +30,7 @@ const jumper = {
   name: 'jumper',
   age: 0, // will be set soon
   interests: ['stalking', 'pouncing', 'toying with prey'],
+  description: 'top notch predator',
   generateAge: function () {
     this.age = randomAge(3, 18) + ' months';
   }
@@ -57,7 +59,7 @@ function renderKitty(kitty) {
   article.appendChild(h2);
 
   const p = document.createElement('p');
-  p.textContent = kitty.name + ' is adorable, and is ' + kitty.age + ' old.';
+  p.textContent = `${kitty.name} is ${kitty.description}, and is ${kitty.age} old.`;
   article.appendChild(p);
 
   const ul = document.createElement('ul');
