@@ -2,7 +2,41 @@
   font-family: Arial, sans-serif;
 }
 
-article {
-  float: left;
-  margin-right: 50px;
+header {
+  background-color: lightgray;
+  padding: 10px;
 }
+
+#kittenProfiles {
+  display: flex;
+}
+
+article {
+  margin-right: 50px;
+  border: 5px solid lightgray;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h1 {
+  font-family: 'Agbalumo', cursive;
+}
+
+h1, nav {
+  display: inline-block;
+}
+
+nav {
+  margin-left: 50px;
+}
+
+a {
+  margin: 10px;
+}
+
+footer {
+  padding: 10px;
+  background-color: lightgray;
+  margin-top: 10px;
+}
+
