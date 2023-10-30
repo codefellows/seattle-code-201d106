@@ -1,3 +1,8 @@
 * {
   font-family: Arial, sans-serif;
 }
+
+article {
+  float: left;
+  margin-right: 50px;
+}
