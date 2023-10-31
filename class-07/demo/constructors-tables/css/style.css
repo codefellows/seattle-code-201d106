@@ -1,3 +1,32 @@
 * {
   font-family: Arial, sans-serif;
 }
+
+header {
+  margin: 20px;
+}
+main {
+  margin: 20px;
+}
+h1 {
+  font-family: 'Agbalumo', cursive;
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+article {
+  margin: 10px;
+}
+
+table, td, th {
+  border: 1px solid;
+  padding: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}

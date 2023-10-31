@@ -101,6 +101,7 @@ function randomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+/*
 // create (aka instantiate) some Kittens
 const frankie = new Kitten('Frankie', ['cuddling', 'chasing string', 'catnip'], true, true, true, 'frankie.jpeg');
 const serena = new Kitten('Serena', ['sitting in laps', 'climbing curtains', 'eating treats'], false, true, false, 'serena.jpeg');
@@ -115,3 +116,18 @@ jumper.meow();
 frankie.render();
 serena.render();
 jumper.render();
+*/
+
+// food for thought - are we getting anything valuable from the frankie, serena and jumper variables?
+// is there a more flexible and scalable way?
+
+const kittens = [
+  new Kitten('Frankie', ['cuddling', 'chasing string', 'catnip'], true, true, true, 'frankie.jpeg'),
+  new Kitten('Serena', ['sitting in laps', 'climbing curtains', 'eating treats'], false, true, false, 'serena.jpeg'),
+  new Kitten('Jumper', ['sunbeams', 'yarn', 'milk', 'paper bags'], false, true, true, 'jumper.jpeg'),
+]
+
+for(let kitten of kittens) {
+  kitten.meow();
+  kitten.render();
+}
