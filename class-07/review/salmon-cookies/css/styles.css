@@ -1,0 +1,71 @@
+* {
+  font-family: 'Helvetica', sans-serif;
+}
+
+header {
+  background: #111;
+}
+
+header h1 {
+  color: salmon;
+  font-size: 3em;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  padding: 1em;
+}
+
+header nav {
+  background: salmon;
+}
+
+header nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+header nav ul li {
+  color: #111;
+  display: inline-block;
+  padding: 1em 0;
+  text-align: center;
+  width: 100px;
+}
+
+.hero {
+  text-align: center;
+  padding: 2em;
+  border-bottom: 1px solid #111;
+}
+
+.content {
+  margin: 3em;
+}
+
+.location {
+  margin-bottom: 2em;
+}
+
+.location h2 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.location li {
+  margin: .5em 2em;
+}
+
+main li {
+  color: #777;
+}
+
+h1, h2 {
+  font-family: 'Righteous', cursive;
+}
+
+footer {
+  background: #ccc;
+  padding: 3em;
+  text-align: center;
+}
