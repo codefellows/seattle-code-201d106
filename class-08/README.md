@@ -8,7 +8,6 @@ In this class you will learn to layout a page using CSS and HTML with a given a 
 
 - Code Review of previous lab assignment
 - Code Demo
-  - Prototypal Inheritance
   - Wire-framing
   - CSS Flexbox
 - Lab preview and prep
