@@ -1,0 +1,92 @@
+body {
+  font-family: monospace;
+}
+
+header {
+  background-color: green;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  width: 80%;
+  padding: 10px;
+}
+
+nav a {
+  font-size: x-large;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  width: 80%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.four-wide {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.four-wide img {
+  width: 100%;
+}
+
+.two-wide {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.two-wide img {
+  width: 100%;
+}
+
+.three-wide {
+  display: flex;
+  gap: 20px;
+}
+
+.one-two-wide {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+.one-two-wide img {
+  flex: 1;
+  width: 100%;
+}
+
+.one-two-wide p {
+  flex:2;
+  overflow: scroll;
+  height: 400px;
+  font-size: 20px;
+}
+
+footer {
+  background-color: green;
+  height: 100px;
+  color: whitesmoke;
+  font-size: x-large;
+  padding: 20px;
+}
+
