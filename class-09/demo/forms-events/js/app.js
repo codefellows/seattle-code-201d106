@@ -2,106 +2,59 @@
 
 'use strict';
 
-// create a kitten factory
+const kittens = [];
+
+// defined later
+let dataRowParent = null;
+let table = null;
+
+// this is a capital K kitten because it's a constructor function
 function Kitten (name, interests, isGoodWithKids, isGoodWithDogs, isGoodWithOtherCats) {
-  // this is a capital K kitten because it's a constructor function
   this.name = name;
-  this.age = this.assignAge();
+  this.age = this.estimateAge();
   this.interests = interests;
   this.isGoodWithKids = isGoodWithKids;
   this.isGoodWithDogs = isGoodWithDogs;
   this.isGoodWithOtherCats = isGoodWithOtherCats;
 }
 
-// add a method to JavaScript's existing Number class to calcualte "cat years" in relation to human years
-Number.prototype.calculateAgeInHumanYears = function() {
-  // the first year of a cat's life is equal to approximately 15 human years
-  return Math.floor(this/12 * 15);
-}
-
-//add a method to JavaScript's existing String object to capatalize first letter of string
-String.prototype.capitalize = function(){
-  return this.charAt(0).toUpperCase() + this.slice(1);
-}
-
-// add assignAge method - here we define the function inline
-Kitten.prototype.assignAge = function() {
-  // the random months number must be persisted so we can use more than once
-  let months = randomInRange(3, 12)
-  this.age = months + ' months';
-  this.ageInCatYears = months.calculateAgeInHumanYears();
+Kitten.prototype.estimateAge = function() {
+  return randomInRange(3, 12)
 };
 
-Kitten.prototype.meow = function () {
-  console.log(this.name + ' says meow!');
-};
-
-function randomInRange (min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-// add render method
 Kitten.prototype.render = function() {
+  const row = document.createElement('tr');
+  dataRowParent.appendChild(row);
 
-  const parentElement = document.getElementById('kittenProfiles');
+  const tdName = document.createElement('td');
+  row.appendChild(tdName);
+  tdName.textContent = this.name;
 
-  const article = document.createElement('article');
-  parentElement.appendChild(article);
+  const tdAge = document.createElement('td');
+  row.appendChild(tdAge);
+  tdAge.textContent = this.age;
 
-  const h2 = document.createElement('h2');
-  h2.textContent = this.name.capitalize();
-  article.appendChild(h2);
+  const tdInterests = document.createElement('td');
+  row.appendChild(tdInterests);
+  tdInterests.textContent = this.interests.join();
 
-  const p = document.createElement('p');
-  // human to cat year comparison added
-  p.textContent = this.name.capitalize() + ' is adorable, and is ' + this.age + ' old. That\'s like a ' + this.ageInCatYears + ' year old human!';
-  article.appendChild(p);
+  const tdKids = document.createElement('td');
+  row.appendChild(tdKids);
+  tdKids.textContent = this.isGoodWithKids;
 
-  const ul = document.createElement('ul');
-  article.appendChild(ul);
+  const tdDogs = document.createElement('td');
+  row.appendChild(tdDogs);
+  tdDogs.textContent = this.isGoodWithDogs;
 
-  for (let i = 0; i < this.interests.length; i++) {
-    const li = document.createElement('li');
-    li.textContent = this.interests[i];
-    ul.appendChild(li);
-  }
-
-  const table = document.createElement('table');
-
-  const row1 = document.createElement('tr');
-  const row2 = document.createElement('tr');
-
-  const th1 = document.createElement('th');
-  th1.textContent = 'Good With Kids';
-  const th2 = document.createElement('th');
-  th2.textContent = 'Good With Dogs';
-  const th3 = document.createElement('th');
-  th3.textContent = 'Good With Other Cats';
-
-  const td1 = document.createElement('td');
-  td1.textContent = this.isGoodWithKids;
-  const td2 = document.createElement('td');
-  td2.textContent = this.isGoodWithDogs;
-  const td3 = document.createElement('td');
-  td3.textContent = this.isGoodWithOtherCats;
-
-  row1.appendChild(th1);
-  row1.appendChild(th2);
-  row1.appendChild(th3);
-
-  row2.appendChild(td1);
-  row2.appendChild(td2);
-  row2.appendChild(td3);
-
-  table.appendChild(row1);
-  table.appendChild(row2);
-  article.appendChild(table);
-
-  const img = document.createElement('img');
-  img.setAttribute('src', 'images/' + this.name + '.jpeg');
-  img.setAttribute('alt', 'cute picture of ' + this.name + ', who is an orange and white cat. You should really adopt him.');
-  article.appendChild(img);
+  const tdCats = document.createElement('td');
+  row.appendChild(tdCats);
+  tdCats.textContent = this.isGoodWithOtherCats;
 }
+
+
+///////////////////////////
+// FORM
+///////////////////////////
 
 const kittenForm = document.getElementById('addKittenForm');
 
@@ -117,8 +70,107 @@ kittenForm.addEventListener('submit',
     const isGoodWithOtherCats = event.target.isGoodWithOtherCats.checked;
 
     const newKitten = new Kitten(name, interests, isGoodWithKids, isGoodWithDogs, isGoodWithOtherCats);
-    newKitten.assignAge();
-    newKitten.render();
+    newKitten.estimateAge();
     kittenForm.reset();
+    newKitten.render();
+    kittens.push(newKitten);
+    renderTableFooter();
   }
 );
+
+///////////////////////////
+// Helper Functions
+///////////////////////////
+
+function randomInRange (min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function renderTable() {
+  const parentElement = document.getElementById('kittenProfiles');
+  table = document.createElement('table');
+  parentElement.appendChild(table);
+
+  renderTableHeader();
+
+  dataRowParent = document.createElement('tbody');
+  table.appendChild(dataRowParent);
+
+  renderTableFooter()
+}
+
+function renderTableHeader() {
+
+  const thead = document.createElement('thead');
+  table.appendChild(thead);
+
+  const row = document.createElement('tr');
+  thead.appendChild(row);
+
+  const thName = document.createElement('th');
+  row.appendChild(thName);
+  thName.textContent = 'Name';
+
+  const thAge = document.createElement('th');
+  row.appendChild(thAge);
+  thAge.textContent = 'Age in months';
+
+  const thInterests = document.createElement('th');
+  row.appendChild(thInterests);
+  thInterests.textContent = 'Interests';
+
+  const thKids = document.createElement('th');
+  row.appendChild(thKids);
+  thKids.textContent = 'Good With Kids';
+
+  const thDogs = document.createElement('th');
+  row.appendChild(thDogs);
+  thDogs.textContent = 'Good With Dogs';
+
+  const thCats = document.createElement('th');
+  row.appendChild(thCats);
+  thCats.textContent = 'Good With Other Cats';
+}
+
+function renderTableFooter() {
+  // Since the footer row now needs to be able to render repeatedly
+  // then we need to empty it out if it has already rendered
+
+  let tfoot = document.querySelector('tfoot');
+
+  if(tfoot) {
+    tfoot.innerHTML = ""; // removes all children of existing tfoot
+  } else {
+    const tfoot = document.createElement('tfoot');
+    table.appendChild(tfoot);
+  }
+
+  const row = document.createElement('tr');
+  tfoot.appendChild(row);
+
+  const kittenCountCell = document.createElement('th');
+  row.appendChild(kittenCountCell);
+  kittenCountCell.textContent = "Kitten Count: " + kittens.length;
+  kittenCountCell.setAttribute('colspan',3);
+  kittenCountCell.classList = ['text-left'];
+
+  let ageSum = 0;
+  for(let i=0; i<kittens.length; i++) {
+    const currentKitten = kittens[i];
+    ageSum += currentKitten.age;
+  }
+
+
+  const averageAge = ageSum / kittens.length || 0;
+  const averageAgeCell = document.createElement('th');
+  row.appendChild(averageAgeCell);
+  averageAgeCell.textContent = 'Average age: ' + averageAge;
+  averageAgeCell.setAttribute('colspan', 3);
+  averageAgeCell.classList = ['text-left'];
+}
+
+///////////////////////////
+// start app
+///////////////////////////
+
+renderTable();
