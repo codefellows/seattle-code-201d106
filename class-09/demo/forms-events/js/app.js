@@ -141,7 +141,7 @@ function renderTableFooter() {
   if(tfoot) {
     tfoot.innerHTML = ""; // removes all children of existing tfoot
   } else {
-    const tfoot = document.createElement('tfoot');
+    tfoot = document.createElement('tfoot');
     table.appendChild(tfoot);
   }
 
