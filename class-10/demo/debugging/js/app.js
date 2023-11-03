@@ -167,7 +167,7 @@ function renderTableFooter() {
 // start app
 ///////////////////////////
 
-renderTable();
+renderTable;
 
 
 ///////////////////////////
