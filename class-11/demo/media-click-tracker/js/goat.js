@@ -74,13 +74,13 @@ function shuffleArray(array) {
   }
 }
 
-function handleLeftGoatClick(event) {
+function handleLeftGoatClick() {
   leftGoatInstance.clicks += 1;
   clickCtr += 1;
   renderGoats();
 }
 
-function handleRightGoatClick(event) {
+function handleRightGoatClick() {
   rightGoatInstance.clicks += 1;
   clickCtr += 1;
   renderGoats();
