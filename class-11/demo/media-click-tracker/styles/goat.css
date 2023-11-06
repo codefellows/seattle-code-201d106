@@ -45,20 +45,20 @@ section {
   grid-column-end: 3;
   padding: 2rem;
   display: flex;
-  justify-content: space-between; 
-  align-items: flex-start; 
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 /* -- goat images --*/
 section img {
   width: 460px;
   max-height: 26rem;
-  /*-- aide accessiblity by preventing layout shift 
-  by adding a transparent border when a border is 
+  /*-- aide accessiblity by preventing layout shift
+  by adding a transparent border when a border is
   added in :hover styles --*/
   border: 5px solid transparent;
 }
-/*-- add hover states so the user can tell what 
+/*-- add hover states so the user can tell what
 behavior is expected of them--*/
 section img:hover {
   border: 5px solid rosybrown;
@@ -89,12 +89,12 @@ section + div {
   margin: 1rem;
 
   /* —— Demo stretch goal —— */
-  /* This code improves the UX. Making it clear what the user should 
-  do once the voting cycle ends. Do not demo this unless you do the 
-  below 'section + div.clicks-allowed' code as well. The class  
+  /* This code improves the UX. Making it clear what the user should
+  do once the voting cycle ends. Do not demo this unless you do the
+  below 'section + div.clicks-allowed' code as well. The class
   'clicks-allowed' must be added to the element via the JavaScript. */
 
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 /* Demo stretch goal: */
 section + div.clicks-allowed {
