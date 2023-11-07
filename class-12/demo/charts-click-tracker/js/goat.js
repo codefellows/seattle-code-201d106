@@ -9,7 +9,7 @@ const leftGoatImage = document.querySelector('section img:first-child');
 const rightGoatImage = document.querySelector('section img:nth-child(2)');
 const viewResultsButton = document.getElementById('viewResultsBtn');
 const ulElem = document.querySelector('ul');
-const maxClicks = 9;
+const maxClicks = 19;
 
 let clickCtr = 0;
 let workingGoats = [];
@@ -51,18 +51,30 @@ function renderGoats() {
     // now make viewResults clickable
     viewResultsButton.hidden = false;
     viewResultsButton.addEventListener('click', handleViewResultsClick);
+    viewResultsButton.classList.add('clicks-allowed');
 
     // also, disable the left and right imgs
     leftGoatImage.removeEventListener('click', handleLeftGoatClick);
     rightGoatImage.removeEventListener('click', handleRightGoatClick);
+
+    // tell styling that voting is over
+    document.querySelector('section').classList.add('no-voting');
+  }
+
+  // handle case of unlucky leftover
+  let leftOver = null;
+  if(workingGoats.length == 1) {
+    leftOver = workingGoats[0];
   }
 
   if (workingGoats.length <= 1) {
-    // TODO: this strategy is effective in avoiding duplicates
-    // but it isn't ideal because it's possible that an can get "unlucky"
-    // and be at end of array multiple times
     workingGoats = allGoats.slice();
     shuffleArray(workingGoats);
+
+    if(leftOver) {
+      removeItem(workingGoats, leftOver);
+      workingGoats.push(leftOver);
+    }
   }
 
   leftGoatInstance = workingGoats.pop(); // retrieves AND removes the last item
@@ -79,6 +91,13 @@ function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1)); // Generate a random index from 0 to i
     [array[i], array[j]] = [array[j], array[i]]; // Swap elements at i and j
+  }
+}
+
+function removeItem(array, item) {
+  const index = array.indexOf(item);
+  if(index !== -1) {
+    array.splice(index,1);
   }
 }
 
