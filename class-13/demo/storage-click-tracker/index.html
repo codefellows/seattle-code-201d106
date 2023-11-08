@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Goat Picker</title>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/goat.css">
+</head>
+
+<body>
+
+  <main>
+    <img src="images/goat-logo.png" id="siteLogo" alt="Goat Picker">
+    <h1>Goat Picker</h1>
+    <section>
+      <img>
+      <img>
+    </section>
+    <button id="viewResultsBtn" hidden>View Results</button>
+    <!-- canvas will be easier to style inside a div-->
+    <div id="chartContainer">
+      <canvas id="myChart"></canvas>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+  <script src="js/goat.js"></script>
+</body>
+
+</html>
