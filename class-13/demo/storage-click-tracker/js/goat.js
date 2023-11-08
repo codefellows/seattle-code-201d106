@@ -3,14 +3,12 @@
 /////////////////////
 // Globals
 /////////////////////
-
 const allGoats = [];
 const leftGoatImage = document.querySelector('section img:first-child');
 const rightGoatImage = document.querySelector('section img:nth-child(2)');
 const viewResultsButton = document.getElementById('viewResultsBtn');
 const ulElem = document.querySelector('ul');
-const maxClicks = 25;
-// # Local Storage
+const maxClicks = 9;
 const goatStorageKey = 'goat-storage-key';
 
 let clickCtr = 0;
@@ -36,6 +34,7 @@ function Selector(arr, limit = 2) {
   this.limit = limit;
 }
 Selector.prototype.shuffle = function (array) {
+  // Fisher Yates via Chat GPT
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1)); // Generate a random index from 0 to i
     [array[i], array[j]] = [array[j], array[i]]; // Swap elements at i and j
@@ -95,10 +94,11 @@ Selector.prototype.select = function () {
 // Functions
 /////////////////////
 function loadGoats() {
-  // # Local Storage
-  const storedGoatText = localStorage.getItem(goatStorageKey);
-  if (storedGoatText) {
-    parseStoredGoats(storedGoatText);
+
+  const storedGoatsText = localStorage.getItem(goatStorageKey);
+
+  if(storedGoatsText) {
+    parseStoredGoats(storedGoatsText);
   } else {
     initGoats();
   }
@@ -106,13 +106,15 @@ function loadGoats() {
   selector = new Selector(allGoats, 2);
 }
 
-// # Local Storage
-function parseStoredGoats(goatText) {
+function parseStoredGoats(storedGoatsText) {
+  // restore from storage
+  const storedGoatObjects = JSON.parse(storedGoatsText);
+
   allGoats.length = 0;
-  const objects = JSON.parse(goatText);
-  for (let goatObject of objects) {
-    const goatInstance = new Goat(goatObject.name, goatObject.src, goatObject.clicks, goatObject.views);
-    allGoats.push(goatInstance);
+
+  for(let goatObject of storedGoatObjects) {
+    const currentGoat = new Goat(goatObject.name, goatObject.src, goatObject.views, goatObject.clicks);
+    allGoats.push(currentGoat);
   }
 }
 
@@ -155,14 +157,12 @@ function endVoting() {
   // tell styling that voting is over
   document.querySelector('section').classList.add('no-voting');
 
-  // # Local Storage
   saveGoats();
+
 }
 
-// # Local Storage
 function saveGoats() {
-  const storageText = JSON.stringify(allGoats);
-  localStorage.setItem(goatStorageKey, storageText);
+  localStorage.setItem(goatStorageKey, JSON.stringify(allGoats));
 }
 
 function nextRound() {
@@ -178,8 +178,6 @@ function nextRound() {
   leftGoatInstance.views += 1;
   rightGoatInstance.views += 1;
 }
-
-
 
 function handleLeftGoatClick() {
   leftGoatInstance.clicks += 1;
@@ -277,15 +275,13 @@ function start() {
 /////////////////////
 start();
 
-
-
 /////////////////////
 // testing example
 // Pro Tip: move to separate JS file
 /////////////////////
 function testSelection() {
   const testSelector = new Selector([1, 2, 3, 4, 5, 6, 7], 3);
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 10000; i++) {
     const previous = testSelector.previousRound;
     const current = testSelector.select();
     for (let currentValue of current) {
@@ -298,7 +294,7 @@ function testSelection() {
   console.log('TESTS PASSED!!!')
 }
 
-// testSelection();
+testSelection();
 
 
 
