@@ -9,16 +9,18 @@ const leftGoatImage = document.querySelector('section img:first-child');
 const rightGoatImage = document.querySelector('section img:nth-child(2)');
 const viewResultsButton = document.getElementById('viewResultsBtn');
 const ulElem = document.querySelector('ul');
-const maxClicks = 9;
+const maxClicks = 25;
+// # Local Storage
 const goatStorageKey = 'goat-storage-key';
 
 let clickCtr = 0;
 let workingGoats = [];
 let leftGoatInstance = null;
 let rightGoatInstance = null;
+let selector = null;
 
 /////////////////////
-// Functions
+// Constructors
 /////////////////////
 function Goat(name, src, views = 0, clicks = 0) {
   this.name = name;
@@ -27,15 +29,84 @@ function Goat(name, src, views = 0, clicks = 0) {
   this.clicks = clicks;
 }
 
+function Selector(arr, limit = 2) {
+  this.allItems = arr;
+  this.workingItems = [];
+  this.previousRound = [];
+  this.limit = limit;
+}
+Selector.prototype.shuffle = function (array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // Generate a random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]]; // Swap elements at i and j
+  }
+}
+
+Selector.prototype.select = function () {
+
+  // collect values for the next round
+  let nextRound = [];
+
+  if (this.workingItems.length >= this.limit) {
+
+    // we have enough items in working list to do the next round
+    while (nextRound.length < this.limit) {
+      nextRound.push(this.workingItems.pop());
+    }
+
+  } else { // we don't have enough values in working list to do the next round
+
+    // if we have any leftovers then make sure they are in next round
+    nextRound = this.workingItems.slice();
+
+    // make list of any values that must NOT be selected for next round
+    // aka any values already in the next round plus any values in previous round
+    const rejects = nextRound.concat(this.previousRound);
+
+    // now make a list of acceptable values for next round
+    const goodies = [];
+    for (let value of this.allItems) {
+      if (!rejects.includes(value)) {
+        goodies.push(value);
+      }
+    }
+
+    // shuffle the goodies
+    this.shuffle(goodies);
+
+    // fill up the next round list if needed
+    while (nextRound.length < this.limit) {
+      nextRound.push(goodies.pop());
+    }
+
+    // the working list should now be the goodies + the rejects at the end
+    // they're not rejects any more but they must be at end
+    // to avoid potential duplicates with previous round
+    this.workingItems = goodies.concat(rejects);
+  }
+
+  // reset the previous round now that next round is has completed
+  this.previousRound = nextRound;
+
+  return nextRound;
+}
+
+/////////////////////
+// Functions
+/////////////////////
 function loadGoats() {
+  // # Local Storage
   const storedGoatText = localStorage.getItem(goatStorageKey);
   if (storedGoatText) {
     parseStoredGoats(storedGoatText);
   } else {
     initGoats();
   }
+
+  selector = new Selector(allGoats, 2);
 }
 
+// # Local Storage
 function parseStoredGoats(goatText) {
   allGoats.length = 0;
   const objects = JSON.parse(goatText);
@@ -64,36 +135,10 @@ function initGoats() {
 }
 
 function renderGoats() {
-
-  // see if clickCtr has reached max
-  if (clickCtr == maxClicks) {
+  if (clickCtr === maxClicks) {
     endVoting();
   } else {
-
-    // handle case of unlucky leftover
-    let leftOver = null;
-    if (workingGoats.length == 1) {
-      leftOver = workingGoats[0];
-    }
-
-    if (workingGoats.length <= 1) {
-      workingGoats = allGoats.slice();
-      shuffleArray(workingGoats);
-
-      if (leftOver) {
-        removeItem(workingGoats, leftOver);
-        workingGoats.push(leftOver);
-      }
-    }
-
-    leftGoatInstance = workingGoats.pop(); // retrieves AND removes the last item
-    leftGoatImage.setAttribute('src', leftGoatInstance.src);
-
-    rightGoatInstance = workingGoats.pop();
-    rightGoatImage.setAttribute('src', rightGoatInstance.src);
-
-    leftGoatInstance.views += 1;
-    rightGoatInstance.views += 1;
+    nextRound();
   }
 }
 
@@ -110,27 +155,31 @@ function endVoting() {
   // tell styling that voting is over
   document.querySelector('section').classList.add('no-voting');
 
+  // # Local Storage
   saveGoats();
 }
 
+// # Local Storage
 function saveGoats() {
   const storageText = JSON.stringify(allGoats);
   localStorage.setItem(goatStorageKey, storageText);
 }
 
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1)); // Generate a random index from 0 to i
-    [array[i], array[j]] = [array[j], array[i]]; // Swap elements at i and j
-  }
+function nextRound() {
+
+  const selectedGoats = selector.select();
+
+  leftGoatInstance = selectedGoats[0];
+  leftGoatImage.setAttribute('src', leftGoatInstance.src);
+
+  rightGoatInstance = selectedGoats[1];
+  rightGoatImage.setAttribute('src', rightGoatInstance.src);
+
+  leftGoatInstance.views += 1;
+  rightGoatInstance.views += 1;
 }
 
-function removeItem(array, item) {
-  const index = array.indexOf(item);
-  if (index !== -1) {
-    array.splice(index, 1);
-  }
-}
+
 
 function handleLeftGoatClick() {
   leftGoatInstance.clicks += 1;
@@ -218,7 +267,6 @@ function renderChart() {
 }
 
 function start() {
-  // initGoats();
   loadGoats();
   initEventListeners();
   renderGoats();
@@ -228,3 +276,29 @@ function start() {
 // Entry point
 /////////////////////
 start();
+
+
+
+/////////////////////
+// testing example
+// Pro Tip: move to separate JS file
+/////////////////////
+function testSelection() {
+  const testSelector = new Selector([1, 2, 3, 4, 5, 6, 7], 3);
+  for (let i = 0; i < 1000; i++) {
+    const previous = testSelector.previousRound;
+    const current = testSelector.select();
+    for (let currentValue of current) {
+      if (previous.includes(currentValue)) {
+        console.error('Oh noes!!!');
+        return;
+      }
+    }
+  }
+  console.log('TESTS PASSED!!!')
+}
+
+// testSelection();
+
+
+
