@@ -1,44 +1,47 @@
-# CSS Animations; Intermediate JS Topics; Using Local Storage to Share Data Between Two Pages
+# Code 201 Review, Code 301 Preview, and Project Week Kickoff
 
 ## Overview
 
-In this class you are going to be introduced to CSS animations, and transitioning from one CSS style to another.  You also will learn how to load multiple JavaScript files from multiple HTML files.
+In this class you will be getting a preview of 301 curriculum and introduced to project week.  You'll also be completing a lab that will walk you through git workflow and handling merge conflicts.
 
 ## Learning Objectives
 
 ### Students will be able to
 
+As a result of completing Lecture 15 of Code 201, students will:
+
 #### Describe and Define
 
-- JavaScript inheritance
-- CSS animations
+- 301 basic structure and expectations
+- How to successfully integrate Git and GitHub into a team code project
 
 #### Execute
 
-- Create CSS animation in a web page.
+- Locate and utilize resources for self-study before beginning Code 301.
+- Define a team agreement and establish collaborative process with a team.
 
 ## Class Outline
 
-- Code Review of previous class assignment
-- Code Demo
-  - CSS Animations
-  - JS - Reinstantiation of objects from local storage
-- Lab preview and prep
+- Code Review
+- Code 301 Preview
+- Agile concepts
+- Final Project Overview
 
 ## Notes
 
-### Additional Resources
+### 301 Preview
 
-- [The State of JS](http://stateofjs.com)
-- [2023 Stack Overflow Developer Survey](https://survey.stackoverflow.co/2023/)
-- [String methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)
-- [Array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
-- [Basics of "pass by value" vs. "pass by reference"](https://codeburst.io/explaining-value-vs-reference-in-javascript-647a975e12a0)
+Lots of good stuff coming up in Code 301! You'll learn to build MERN apps and deeper exploration of how the web works.
 
+#### Structure of 301
 
-- Suggested JS readings
-  - [Eloquent JavaScript](http://eloquentjavascript.net/)
-  - [JS, the Good Parts](http://shop.oreilly.com/product/9780596517748.do)
-  - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
-  - [Eric Elliott's articles on Medium](https://medium.com/@_ericelliott)
-  - [What is "this" in JavaScript?](https://www.javascripttutorial.net/javascript-this/)
+- Pair programming
+- Daily code challenges
+- 3 modules of app building
+- A final project, deployed to the cloud!
+
+## Final Project Overview
+
+1. Go over the final project description.
+1. Discuss GitHub workflow in teams.
+1. GitHub Issues & Projects are the best way to organize your project work.
